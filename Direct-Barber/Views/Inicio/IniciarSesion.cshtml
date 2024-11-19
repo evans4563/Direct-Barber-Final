@@ -1,0 +1,59 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión - Direct Barber</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/auth-styles.css" />
+</head>
+<body>
+    <div class="auth-container">
+        <div class="logo-container text-center">
+            <img src="images/logo.png" alt="Logo Direct Barber" class="logo" />
+        </div>
+        <h2 class="text-center mb-4">Iniciar Sesión</h2>
+        <form asp-controller="Inicio" asp-action="IniciarSesion" method="post">
+            <div class="form-group">
+                <input class="form-control mb-3" type="email" placeholder="Correo electrónico" required name="Correo" />
+            </div>
+            <div class="form-group">
+                <input class="form-control mb-3" type="password" placeholder="Contraseña" required name="Contrasena" />
+            </div>
+            <div class="d-flex justify-content-between mb-3">
+                <a href="@Url.Action("Recuperar", "Inicio")" class="forgot-password">¿Olvidaste tu contraseña?</a>
+            </div>
+            <div class="d-grid gap-2 mb-3">
+                <button class="btn btn-custom btn-block" type="submit">Iniciar sesión</button>
+            </div>
+           @*  <div class="divider text-center mb-4">
+                <span>O inicia sesión con</span>
+            </div> *@
+        @*     <div class="social-login d-flex justify-content-center gap-3 mb-4">
+                <button class="btn btn-google">
+                    <img src="images/gmail.png" alt="Google" style="width:30px; height:30px; border-radius:50%;" class="social-logo"> Google
+                </button>
+                <button class="btn btn-facebook">
+                    <img src="images/facebook.png" alt="Facebook" style="width:30px; height:30px; border-radius:50%;" class="social-logo"> Facebook
+                </button>
+            </div> *@
+            @if (ViewData["Mensaje"] != null)
+            {
+                <div class="alert alert-danger" role="alert">
+                    @ViewData["Mensaje"]
+                </div>
+            }
+            <div class="text-center">
+                ¿No tienes una cuenta? <a href="@Url.Action("Registrarse", "Inicio")">Regístrate</a>
+            </div>
+        </form>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+

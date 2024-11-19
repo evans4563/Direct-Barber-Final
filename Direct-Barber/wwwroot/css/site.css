@@ -1,0 +1,463 @@
+﻿body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+/* Estilos personalizados para la página principal */
+.hero-image {
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.hero-text {
+    background-color: rgba(0, 0, 0, 0.5); /* Para oscurecer un poco el fondo */
+    padding: 20px;
+    border-radius: 10px;
+}
+
+/* Ajustes para el navbar */
+.navbar {
+    padding: 15px;
+    margin: 0px
+}
+
+.navbar-nav .nav-link {
+    color: white !important;
+}
+
+    .navbar-nav .nav-link:hover {
+        color: #f1c40f !important; /* Color al pasar el mouse */
+    }
+
+body {
+    font-family: Arial, sans-serif;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #B9BCC3;
+    color: #444;
+    text-align: left;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+.pb-3 {
+    padding-bottom: 0 !important;
+}
+
+.card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    margin-bottom: 20px;
+    transition: transform 0.2s ease-in-out;
+}
+
+    .card:hover {
+        transform: scale(1.02);
+    }
+
+    .card img {
+        margin-left: 20px;
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        border-radius: 8px;
+    }
+
+.card-title {
+    color: #333;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.card-text {
+    font-size: 14px;
+    color: #555;
+}
+
+/* Botones */
+.btn-primary, .btn-secondary {
+    background-color: #555;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+    .btn-primary:hover, .btn-secondary:hover {
+        background-color: #333;
+        color: #fff;
+    }
+
+.btn-primary {
+    background-color: #007bff;
+}
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+
+
+.container {
+    padding: 20px;
+    margin: 0 auto;
+}
+
+
+@media (max-width: 768px) {
+    .card {
+        flex-direction: column;
+        text-align: center;
+    }
+
+        .card img {
+            margin-left: 0;
+            margin-top: 15px;
+        }
+}
+
+.hero {
+    background-image: url('../images/fondo.png');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+    position: relative;
+}
+
+
+    .hero::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 1;
+    }
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.hero h1 {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.hero p {
+    font-size: 1.5rem;
+    margin-bottom: 40px;
+    color: #e0e0e0;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.btn-lg {
+    padding: 15px 30px;
+    font-size: 1.25rem;
+    border-radius: 5px;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border: none;
+    color: #fff;
+    transition: background-color 0.3s ease;
+}
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+
+.btn-secondary {
+    background-color: #6c757d;
+    border: none;
+    color: #fff;
+    transition: background-color 0.3s ease;
+}
+
+    .btn-secondary:hover {
+        background-color: #5a6268;
+    }
+/* Estilos Generales */
+.contact-container {
+    background-color: #f7f7f7;
+    padding: 60px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
+}
+
+.contact-title {
+    text-align: center;
+    font-size: 36px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.contact-subtitle {
+    text-align: center;
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 40px;
+}
+
+.contact-info {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center; /* Centra los elementos horizontalmente */
+    gap: 50px; /* Espaciado entre los elementos */
+}
+
+.contact-item {
+    margin-bottom: 20px;
+    text-align: center; /* Centra el texto y los íconos */
+    max-width: 200px; /* Controla el ancho máximo de cada elemento */
+}
+
+.icon-circle {
+    background-color: #333;
+    color: #fff;
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+    line-height: 80px;
+    border-radius: 50%;
+    font-size: 30px;
+    margin-bottom: 10px;
+    transition: all 0.3s ease;
+}
+
+    .icon-circle:hover {
+        background-color: #555;
+    }
+
+/* Redes Sociales */
+.social-media-container {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.social-icons {
+    margin-top: 20px;
+}
+
+.social-link {
+    display: inline-block;
+    margin: 0 15px;
+    color: #333;
+    font-size: 40px;
+    transition: color 0.3s ease;
+}
+
+    .social-link:hover {
+        color: #000;
+    }
+
+/* Testimonios */
+.testimonials-container {
+    margin-top: 60px;
+    padding: 30px;
+    background-color: #e0e0e0;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+blockquote {
+    font-style: italic;
+    color: #555;
+    border-left: 5px solid #333;
+    padding-left: 15px;
+}
+
+    blockquote:before {
+        content: '“';
+        font-size: 40px;
+        vertical-align: middle;
+        color: #333;
+        margin-right: 10px;
+    }
+
+/* Formulario */
+.contact-form {
+    margin-top: 50px;
+}
+
+    .contact-form input, .contact-form textarea {
+        background-color: #f0f0f0;
+        border: 1px solid #ccc;
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 5px;
+        width: 100%;
+        font-size: 16px;
+        color: #333;
+    }
+
+    .contact-form button {
+        background-color: #333;
+        color: #fff;
+        border: none;
+        padding: 15px 30px;
+        font-size: 18px;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+        width: 100%;
+    }
+
+        .contact-form button:hover {
+            background-color: #555;
+        }
+
+/* Mejoras de diseño visual */
+h5 {
+    font-size: 20px;
+    color: #444;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 16px;
+    color: #666;
+}
+/* Estilos Generales */
+.payment-container {
+    background-color: #f9f9f9;
+    padding: 50px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
+    max-width: 600px;
+    margin: auto;
+}
+
+.payment-title {
+    text-align: center;
+    font-size: 36px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.payment-subtitle {
+    text-align: center;
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 40px;
+}
+
+.payment-form {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+    .form-group label {
+        font-size: 16px;
+        color: #444;
+    }
+
+.form-control {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    padding: 15px;
+    border-radius: 5px;
+    width: 100%;
+    font-size: 16px;
+    color: #333;
+}
+
+/* Métodos de Pago */
+.payment-methods {
+    margin-bottom: 25px;
+}
+
+.payment-option {
+    margin-bottom: 15px;
+    font-size: 16px;
+    color: #444;
+}
+
+    .payment-option input[type="radio"] {
+        margin-right: 10px;
+    }
+
+/* Detalles de Pago */
+.payment-details {
+    background-color: #f7f7f7;
+    padding: 15px;
+    border-radius: 5px;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #666;
+}
+
+    .payment-details p {
+        margin: 5px 0;
+    }
+
+    .payment-details h4 {
+        font-size: 18px;
+        color: #333;
+        margin-bottom: 10px;
+    }
+
+/* Botón Confirmar */
+.btn-block {
+    width: 100%;
+    font-size: 18px;
+    padding: 15px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+    .btn-block:hover {
+        background-color: #555;
+    }

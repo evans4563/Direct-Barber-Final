@@ -1,0 +1,23 @@
+﻿@model List<BarberiaApp.Controllers.Servicio>
+
+<h2 style="color: #333;">Servicios Disponibles</h2>
+<div class="container">
+    <div class="row">
+        @foreach (var servicio in Model)
+        {
+            <div class="col-md-12">
+                <div class="card mb-4">
+                    <div style="flex-grow: 1;">
+                        <h5 class="card-title">@servicio.Nombre</h5>
+                        <p class="card-text">¡Aprovecha este increíble servicio para mejorar tu estilo!</p>
+                        <input type="checkbox" name="serviciosSeleccionados" value="@servicio.Nombre" /> Seleccionar
+                    </div>
+                    <div>
+                        <img src="~/images/@servicio.Imagen" alt="@servicio.Nombre">
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <a href="@Url.Action("Pago", "Servicios")" class="btn btn-primary">Proceder con el Pago</a>
+</div>

@@ -1,0 +1,86 @@
+﻿@model Direct_Barber.Models.Usuario
+@inject IHttpContextAccessor HttpContextAccessor
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/EditPerfil.css"/>
+    <title>Editar Perfil</title>
+
+</head>
+<body>
+    <div class="form-container">
+        <h2 class="tittt">Editar Perfil</h2>
+        <form asp-action="Edit" enctype="multipart/form-data">
+            <input type="hidden" asp-for="Id" />
+
+            <div class="photo-upload-container">
+                <img src="~/images/@(Model.Foto ?? "default.png")" alt="Foto de perfil" class="current-photo" id="profilePhotoPreview" />
+                <div class="file-input-container">
+                    <label asp-for="ImagenFile" class="Sub">Foto de perfil</label>
+                    <input class="form-control" type="file" name="foto" id="photoInput" />
+                    <span asp-validation-for="ImagenFile" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Nombre" class="Sub"></label>
+                <input asp-for="Nombre" class="form-control" />
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Apellido" class="Sub"></label>
+                <input asp-for="Apellido" class="form-control" />
+                <span asp-validation-for="Apellido" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Correo" class="Sub"></label>
+                <input asp-for="Correo" class="form-control" />
+                <span asp-validation-for="Correo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Direccion" class="Sub"></label>
+                <input asp-for="Direccion" class="form-control" />
+                <span asp-validation-for="Direccion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Telefono" class="Sub"></label>
+                <input asp-for="Telefono" class="form-control" />
+                <span asp-validation-for="Telefono" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FecNacimiento" class="Sub"></label>
+                <input asp-for="FecNacimiento" class="form-control" type="date" />
+                <span asp-validation-for="FecNacimiento" class="text-danger"></span>
+            </div>
+            <div class="action-buttons">
+                <button type="submit" class="action-button">Guardar</button>
+                <a asp-action="Index" class="action-button">Cancelar</a>
+            </div>
+        </form>
+        <div asp-validation-summary="All" class="text-danger"></div>
+    </div>
+
+    @section Scripts {
+        @{
+            await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        }
+        <script>
+            document.getElementById('photoInput').onchange = function (evt) {
+                var tgt = evt.target || window.event.srcElement,
+                    files = tgt.files;
+
+                if (FileReader && files && files.length) {
+                    var fr = new FileReader();
+                    fr.onload = function () {
+                        document.getElementById('profilePhotoPreview').src = fr.result;
+                    }
+                    fr.readAsDataURL(files[0]);
+                }
+            }
+        </script>
+    }
+</body>
+</html>

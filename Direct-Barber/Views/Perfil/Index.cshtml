@@ -1,0 +1,30 @@
+﻿﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/IndexPerfil.css" />
+    <title>Perfil</title>
+
+</head>
+<body>
+    <div class="profile-container">
+        <div class="profile-header">
+            <img src="/images/@(Model.Foto ?? "usuario.png")" alt="Foto de perfil" class="profile-photo">
+            <div class="profile-info">
+                <h2 class="tittt">Perfil</h2>
+                <p><strong style="color: #2C3D5B">Nombre:</strong> @Model.Nombre @Model.Apellido</p>
+                <p><strong style="color: #2C3D5B">Dirección:</strong> @Model.Direccion</p>
+                <p><strong style="color: #2C3D5B">Contacto:</strong> @Model.Telefono</p>
+            </div>
+        </div>
+        <div class="support-container">
+            <a href="@Url.Action("Soporte")" class="support-button">Soporte técnico</a>
+            <a href="#" class="support-button">Ayuda</a>
+            <a href="@Url.Action("TerminosyCondiciones")" class="support-button">Términos y condiciones</a>
+        <div class="action-buttons">
+            <a href="@Url.Action("Edit", new { id = Model.Id })" class="action-button">Editar</a>
+            <a href="@Url.Action("Delete", new { id = Model.Id })" class="action-button" onclick="return confirm('¿Estás seguro de que deseas eliminar este usuario?');">Eliminar</a>
+        </div>
+    </div>
+</body>

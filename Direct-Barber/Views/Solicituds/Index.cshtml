@@ -1,0 +1,144 @@
+﻿@model Direct_Barber.Models.SolicitudIndexViewModel
+
+@{
+    ViewData["Title"] = "Solicitudes del Cliente";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5">
+    <div class="text-center mb-4">
+        <h1 class="display-4">@ViewData["Title"]</h1>
+        <p class="lead">Aquí puedes gestionar tus solicitudes y ver el estado de las que ya han sido confirmadas con un barbero.</p>
+    </div>
+
+    <!-- Tabla 1: Solicitudes del Cliente Autenticado -->
+    <div class="card shadow-sm mb-5">
+        <div class="card-header bg-primary text-white">
+            <h2 class="h4 mb-0">Solicitudes</h2>
+        </div>
+        <div class="card-body p-4">
+            <div class="table-responsive">
+                <table class="table table-hover table-striped">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Dirección</th>
+                            <th>Fecha</th>
+                            <th>Tipo de Servicio</th>
+                            <th>Precio</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.SolicitudesCliente != null && Model.SolicitudesCliente.Any())
+                        {
+                            @foreach (var solicitud in Model.SolicitudesCliente)
+                            {
+                                <tr>
+                                    <td>@Html.DisplayFor(modelItem => solicitud.Dirección)</td>
+                                    <td>@Html.DisplayFor(modelItem => solicitud.Fecha)</td>
+                                    <td>@Html.DisplayFor(modelItem => solicitud.TipoServicioNavigation.Nombre)</td>
+                                    <td>@Html.DisplayFor(modelItem => solicitud.PrecioServicio)</td>
+                                    <td>
+                                        <a class="btn btn-warning btn-sm" asp-action="Edit" asp-route-id="@solicitud.IdSolicitud">Editar</a>
+                                        <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@solicitud.IdSolicitud">Cancelar</a>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr>
+                                <td colspan="5" class="text-center">No tienes solicitudes activas.</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tabla 2: Solicitudes con Barbero -->
+    <div class="card shadow-sm mb-5">
+        <div class="card-header bg-success text-white">
+            <h2 class="h4 mb-0">Solicitudes Confirmadas (Con Barbero)</h2>
+        </div>
+        <div class="card-body p-4">
+            <div class="table-responsive">
+                <table class="table table-hover table-striped">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Dirección</th>
+                            <th>Fecha</th>
+                            <th>Tipo de Servicio</th>
+                            <th>Precio</th>
+                            <th>Barbero</th>
+                            <th>Acciones</th>
+                            <th>Ver perfil</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.SolicitudesConBarbero != null && Model.SolicitudesConBarbero.Any())
+                        {
+                            @foreach (var solicitud in Model.SolicitudesConBarbero)
+                            {
+                                <tr>
+                                    <td>@Html.DisplayFor(modelItem => solicitud.Dirección)</td>
+                                    <td>@Html.DisplayFor(modelItem => solicitud.Fecha)</td>
+                                    <td>@Html.DisplayFor(modelItem => solicitud.TipoServicioNavigation.Nombre)</td>
+                                    <td>@Html.DisplayFor(modelItem => solicitud.PrecioServicio)</td>
+                                    <td>@Html.DisplayFor(modelItem => solicitud.IdBarberoNavigation.Nombre)</td>
+                                    <td>
+                                        <form asp-action="CancelarServicio" method="post" style="display:inline;">
+                                            <input type="hidden" name="id" value="@solicitud.IdSolicitud" />
+                                            <button type="submit" class="btn btn-danger btn-sm">Cancelar Servicio</button>
+                                        </form>
+                                    </td>
+                                    <td>
+                                        <a href="@Url.Action("VerPerfil", "Perfil", new { id = solicitud.IdBarberoNavigation.Id })" class="btn btn-info btn-sm">
+                                            Ver Perfil
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr>
+                                <td colspan="6" class="text-center">No hay solicitudes confirmadas con barbero.</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .table thead th {
+        vertical-align: middle;
+        text-align: center;
+    }
+
+    .table tbody td {
+        vertical-align: middle;
+        text-align: center;
+    }
+
+    .btn {
+        min-width: 100px;
+    }
+
+    .table-responsive {
+        max-height: 400px;
+        overflow-y: auto;
+    }
+
+    .card {
+        border: none;
+    }
+
+    .card-header {
+        font-weight: 600;
+    }
+</style>

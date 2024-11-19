@@ -1,0 +1,47 @@
+﻿@{
+    ViewData["Title"] = "Pago";
+}
+
+<div class="payment-container" style="padding: 50px; background: linear-gradient(135deg, #f9f9f9, #e6e6e6); border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
+    <h2 class="payment-title">Proceder con el Pago</h2>
+    <p class="payment-subtitle">Elige tu método de pago y Recarga tu perfil.</p>
+
+    <div class="payment-form">
+        <form>
+            <div class="form-group">
+                <label for="service">Servicio Seleccionado</label>
+                <input type="text" class="form-control" id="service" value="@ViewBag.SelectedService" readonly>
+            </div>
+
+            <h4>Métodos de Pago</h4>
+            <div class="payment-methods">
+                <div class="payment-option">
+                    <input type="radio" id="transferencia" name="paymentMethod" value="Transferencia">
+                    <label for="transferencia">Transferencia Bancaria</label>
+                </div>
+            </div>
+
+            <div id="payment-details" class="payment-details" style="display:none;">
+                <h4>Detalles de Transferencia</h4>
+                <p>Puedes realizar la transferencia a la siguiente cuenta bancaria:</p>
+                <p><strong>Banco:</strong> Banco Ejemplo</p>
+                <p><strong>Número de cuenta:</strong> 1234567890</p>
+                <p><strong>Titular:</strong> Direct Barber</p>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-lg btn-block">Confirmar Pago</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    document.querySelectorAll('input[name="paymentMethod"]').forEach(function (el) {
+        el.addEventListener('change', function () {
+            if (this.value === 'Transferencia') {
+                document.getElementById('payment-details').style.display = 'block';
+            } else {
+                document.getElementById('payment-details').style.display = 'none';
+            }
+        });
+    });
+</script>

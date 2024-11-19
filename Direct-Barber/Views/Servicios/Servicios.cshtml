@@ -1,0 +1,101 @@
+﻿@{
+    ViewData["Title"] = "Servicios";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servicios - Direct Barber</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <style>
+        .card {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 20px;
+        }
+
+        .service-content {
+            display: flex;
+            align-items: center;
+        }
+
+        .service-label {
+            margin-left: 10px;
+            font-size: 18px;
+        }
+
+        .service-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .service-right {
+            margin-left: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="mb-4">Nuestros Servicios</h2>
+
+        <form method="post" action="/Home/ProcederPago">
+            <div class="card">
+                <div class="service-content">
+                    <input type="radio" id="corteCabello" name="service" value="Corte de Cabello">
+                    <label for="corteCabello" class="service-label">Corte de Cabello</label>
+                </div>
+                <div class="service-right">
+                    <img src="~/images/corte.jpg" class="service-image" />
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="service-content">
+                    <input type="radio" id="afeitado" name="service" value="Afeitado">
+                    <label for="afeitado" class="service-label">Afeitado</label>
+                </div>
+                <div class="service-right">
+                    <img src="~/images/afeitado.jpg" class="service-image" />
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="service-content">
+                    <input type="radio" id="tinteCabello" name="service" value="Tinte de Cabello">
+                    <label for="tinteCabello" class="service-label">Tinte de Cabello</label>
+
+                </div>
+                <div class="service-right">
+                    <img src="~/images/tintura.jpg" class="service-image" />
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="service-content">
+                    <input type="radio" id="corteBarba" name="service" value="Corte de Barba">
+                    <label for="corteBarba" class="service-label">Corte de Barba</label>
+                </div>
+                <div class="service-right">
+                    <img src="~/images/barba.jpg" class="service-image" />
+                </div>
+            </div>
+            <br />
+
+            @if (ViewBag.ErrorMessage != null)
+            {
+                <p style="color: red;">@ViewBag.ErrorMessage</p>
+            }
+            <a asp-action="Pago" class="btn btn-primary mt-4">Proceder con el pago</a>
+        </form>
+    </div>
+
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

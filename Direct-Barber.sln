@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35201.131
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Direct-Barber", "Direct-Barber\Direct-Barber.csproj", "{DDE4A5F2-EAA8-4D3D-92E8-A2C60EC9FA69}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DDE4A5F2-EAA8-4D3D-92E8-A2C60EC9FA69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDE4A5F2-EAA8-4D3D-92E8-A2C60EC9FA69}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDE4A5F2-EAA8-4D3D-92E8-A2C60EC9FA69}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDE4A5F2-EAA8-4D3D-92E8-A2C60EC9FA69}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2FAEE686-F8B7-483F-BB78-932150960BF3}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,94 @@
+﻿body {
+    background-image: url('../images/fondo.png'); /* Cambia a una imagen oscura */
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.auth-container {
+    background-color: rgba(0, 0, 0, 0.8); /* Fondo oscuro con transparencia */
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    width: 100%;
+    color: white;
+}
+
+.logo {
+    max-width: 120px;
+    margin-bottom: 1rem;
+}
+
+.form-control {
+    background-color: #2c2c2c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 1rem;
+}
+
+    .form-control::placeholder {
+        color: #bdbdbd;
+    }
+
+.btn-custom {
+    background-color: #f1c40f;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    padding: 0.75rem 1rem;
+}
+
+    .btn-custom:hover {
+        background-color: #e1b60e;
+    }
+
+.divider {
+    color: #bdbdbd;
+}
+
+.social-login .btn {
+    background-color: #2c2c2c;
+    color: white;
+    border: 1px solid #4d4d4d;
+    padding: 0.5rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-radius: 5px;
+    width: 48%;
+}
+
+.social-login .btn-google {
+    background-color: #db4437;
+}
+
+.social-login .btn-facebook {
+    background-color: #4267B2;
+}
+
+.social-logo {
+    width: 20px;
+    height: 20px;
+}
+
+.forgot-password {
+    color: #f1c40f;
+}
+
+    .forgot-password:hover {
+        text-decoration: underline;
+    }
+
+.text-center a {
+    color: #f1c40f;
+}
+
+    .text-center a:hover {
+        text-decoration: underline;
+    }

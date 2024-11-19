@@ -1,0 +1,101 @@
+﻿body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    
+}
+
+.profile-container {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 600px;
+    margin: 35px auto;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.profile-photo {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 20px;
+}
+
+.profile-info {
+    flex-grow: 1;
+}
+
+    .profile-info p {
+        margin: 5px 0;
+        text-align: left;
+    }
+
+.support-container {
+    margin-top: 20px;
+}
+
+.support-button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    background-color: #f0f0f0;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    color: #333;
+}
+
+.action-buttons {
+    margin-top: 20px;
+    text-align: center;
+}
+
+/* Nueva clase para los botones de acción */
+.action-button {
+    background-color: #212529;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: color 0.3s;
+    text-decoration: none;
+    display: inline-block;
+    margin: 0 5px;
+}
+
+    .action-button:hover {
+        color: #f1c40f;
+    }
+
+
+.tittt {
+    color: #2C3D5B !important ;
+    font-weight: bold !important;
+    text-align: left;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #333; /* Ajusta según tu diseño */
+    color: white; /* Ajusta según tu diseño */
+    padding: 10px 0;
+    text-align: center;
+}
+
+/* Asegúrate de que el contenido principal no se superponga con el footer */
+main {
+    padding-bottom: 60px; /* Ajusta según la altura de tu footer */
+}

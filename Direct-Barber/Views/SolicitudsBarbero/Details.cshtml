@@ -1,0 +1,161 @@
+﻿@model Direct_Barber.Models.Solicitud
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="d-none">Details</h1> <!-- Ocultamos el h1 para no interferir con el diseño -->
+
+<div class="main-container">
+    <!-- Panel emergente de la izquierda -->
+    <div id="side-panel" class="side-panel">
+        <div class="side-panel-content">
+            <h4 class="text-center mb-4">Solicitud</h4>
+            <h5 class="text-center mb-4">Aquí puedes ver la dirección en el mapa y aceptar la Solicitud</h5>
+            <div>
+                <h6 class="mb-3">Detalles de la Solicitud</h6>
+                <hr />
+                <div class="solicitud-details">
+                    <div class="detail-item">
+                        <span class="detail-title">Dirección:</span>
+                        <span class="detail-value">@Html.DisplayFor(model => model.Dirección)</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-title">Fecha:</span>
+                        <span class="detail-value">@Html.DisplayFor(model => model.Fecha)</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-title">Tipo de Servicio:</span>
+                        <span class="detail-value">@Html.DisplayFor(model => model.TipoServicioNavigation.Nombre)</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-title">Precio:</span>
+                        <span class="detail-value">@Html.DisplayFor(model => model.PrecioServicio)</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-title">@Html.DisplayNameFor(model => model.IdClienteNavigation.Nombre)</span>
+                        <span class="detail-value">@Html.DisplayFor(model => model.IdClienteNavigation.Nombre)</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-title">@Html.DisplayNameFor(model => model.IdClienteNavigation.Telefono)</span>
+                        <span class="detail-value">@Html.DisplayFor(model => model.IdClienteNavigation.Telefono)</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Formulario para aceptar la solicitud -->
+            <form asp-action="Aceptar" method="post" class="mt-3">
+                <a asp-action="Index" class="btn btn-secondary">Volver</a>
+                <input type="hidden" name="id" value="@Model.IdSolicitud" />
+                <button type="submit" class="btn btn-success btn-lg btn-block">Aceptar</button> <!-- Tamaño aumentado -->
+            </form>
+        </div>
+    </div>
+    <!-- Mapa -->
+    <div id="map-container" class="map-container">
+        <div id="map"></div>
+    </div>
+</div>
+
+@section Scripts {
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDk_6YpNpeASBHg_kW6F92G_6YoMacuMH8&libraries=places&callback=initMap"></script>
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+
+    <script type="text/javascript">
+        let map;
+        let geocoder;
+        let marker;
+
+        function initMap() {
+            geocoder = new google.maps.Geocoder();
+
+            // Inicializa el mapa centrado en la dirección de la solicitud
+            const direccion = '@Model.Dirección';
+            geocoder.geocode({ address: direccion }, function (results, status) {
+                if (status === "OK" && results[0]) {
+                    const location = results[0].geometry.location;
+                    map = new google.maps.Map(document.getElementById("map"), {
+                        zoom: 17,
+                        center: location,
+                    });
+                    setMapMarker(location);
+                } else {
+                    console.error("Geocodificación fallida: " + status);
+                }
+            });
+        }
+
+        // Coloca un marcador en el mapa
+        function setMapMarker(location) {
+            if (marker) {
+                marker.setPosition(location);
+            } else {
+                marker = new google.maps.Marker({
+                    position: location,
+                    map: map
+                });
+            }
+        }
+    </script>
+}
+
+<style>
+    .main-container {
+        display: flex;
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    .side-panel {
+        width: 350px;
+        background-color: dimgray;
+        padding: 20px;
+        box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.5);
+        z-index: 2;
+        overflow-y: auto;
+    }
+
+    .side-panel-content {
+        color: white;
+    }
+
+    .solicitud-details {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .detail-item {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 0;
+        border-bottom: 1px solid #ccc;
+    }
+
+    .detail-title {
+        font-weight: bold;
+    }
+
+    .detail-value {
+        text-align: right;
+    }
+
+    .map-container {
+        flex-grow: 1;
+        overflow: hidden;
+    }
+
+    #map {
+        width: 100%;
+        height: 100vh;
+    }
+
+    .btn-success {
+        margin-top: 10px;
+        font-size: 1.5rem; /* Aumenta el tamaño del texto en el botón */
+        padding: 15px; /* Aumenta el relleno para hacer el botón más grande */
+        background-color: #28a745; /* Verde para el botón Aceptar */
+        border-color: #28a745;
+    }
+</style>

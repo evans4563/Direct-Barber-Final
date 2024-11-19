@@ -1,0 +1,91 @@
+﻿/* Estilos para centrar y mejorar el formulario */
+.resena-container {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto; /* Para centrar el contenedor */
+    margin-top: 50px; /* Separación superior */
+    margin-bottom: 30px; /* Espacio inferior para evitar contacto con el footer */
+}
+
+/* Ajustar el footer para que no interfiera con el contenido */
+footer {
+    position: relative; /* Cambiado de fixed a relative */
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #333; /* Ajusta según tu diseño */
+    color: white; /* Ajusta según tu diseño */
+    padding: 10px 0;
+    text-align: center;
+}
+
+/* Ajustar el padding en el contenido principal */
+main {
+    padding-bottom: 20px; /* Ajusta según el espacio que desees */
+}
+
+h2 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; /* Espacio entre los elementos del formulario */
+}
+
+label {
+    margin-bottom: 0.5rem;
+    color: #555;
+    font-weight: bold;
+}
+
+textarea, input[type="number"] {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 1rem;
+    font-size: 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+    button:hover {
+        background-color: #45a049;
+    }
+
+@media (max-width: 600px) {
+    .resena-container {
+        width: 90%;
+    }
+}

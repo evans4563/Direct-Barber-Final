@@ -1,0 +1,96 @@
+﻿@model BarberoViewModel
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/Resenas.css"/>
+    <title>Perfil de @Model.NombreBarbero</title>
+</head>
+<body>
+    <div class="container">
+        <!-- Sección del Perfil del Barbero -->
+        <div class="perfil-barbero">
+            <h1 style="color: #2C3D5B font-weight: bold">Perfil de @Model.NombreBarbero</h1>
+
+            <div class="foto">
+                <img src="/images/@(Model.Foto ?? "usuario.png")" style="width:150px; height:150px; border-radius:50%;" alt="Foto de perfil" class="barbero-photo">
+            </div>
+            <div class="perfil-info">
+                <div class="info-text">
+                    <p><strong>Nombre completo:</strong> @Model.NombreBarbero @Model.ApellidoBarbero</p>
+                    <p><strong>Dirección:</strong> @Model.Direccion</p>
+                    <p><strong>Teléfono:</strong> @Model.Telefono</p>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Sección de Promedio y Reseñas -->
+        <div class="resenas-promedio">
+            <div class="res-pro">
+                <span>⭐ @Model.PromedioCalificacion</span>
+                <p>Promedio</p>
+            </div>
+            <div class="res-pro">
+                <span>💬 @Model.TotalResenas</span>
+                <p>Reseñas</p>
+            </div>
+            <div class="res-pro">
+                <div class="agregar-resena">
+                    <!--Boton de reseña-->
+                    <button onclick="document.getElementById('agregarResenaForm').style.display='block'">Agregar reseña</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="agregar">
+            <div id="agregarResenaForm" style="display:none;" class="form-agregar-resena">
+                <h3>Agregar reseña:</h3>
+                <form asp-action="AgregarResena" method="post">
+                    <input type="hidden" name="BarberoId" value="@Model.BarberoId" />
+                    <label for="contenido">Reseña:</label>
+                    <textarea id="contenido" name="contenido" required></textarea>
+
+                    <label for="calificacion">Puntuación (1-5):</label>
+                    <input type="number" id="calificacion" name="calificacion" min="1" max="5" required />
+
+                    <button type="submit">Publicar</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Sección de Reseñas -->
+        <div class="resenas-container">
+            <h2>Reseñas:</h2>
+            <div class="resenas-item">
+                @foreach (var resena in Model.Resenas)
+                {
+                    <div class="resena-personal ">
+                        <div class="resena-foto">
+                            <img src="/images/@(resena.Cliente.Foto?? "usuario.png")" style="width:60px; height:60px; border-radius:50%;" alt="Foto del cliente" class="cliente-photo">
+                        </div>
+
+                        <div class="resena-info">
+                            <strong>@resena.Cliente.Nombre @resena.Cliente.Apellido</strong>
+                            <p><strong>Calificación:</strong> @resena.Calificacion</p>
+                            <p><strong>Reseña:</strong> @resena.Contenido</p>
+                            <small>Publicado el @resena.FechaPublicacion.ToShortDateString()</small>
+                        </div>
+
+                        <div class="rese-acciones">
+                            @if (resena.Cliente.Id == Model.ClienteActualId) // Verificar si el cliente actual es el dueño de la reseña
+                            {
+                                <a href="@Url.Action("EditarResena", "Perfil", new { id = resena.Id })" class="btn-edit">Editar</a>
+                                <form action="@Url.Action("EliminarResena", "Perfil", new { id = resena.Id })" method="post" style="display:inline;" onsubmit="return confirm('¿Estás seguro de que deseas eliminar esta reseña?');">
+                                    <button type="submit" class="btn-delete">Eliminar</button>
+                                </form>
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</body>
+</html>

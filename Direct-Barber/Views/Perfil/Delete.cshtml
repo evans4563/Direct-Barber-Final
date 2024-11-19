@@ -1,0 +1,49 @@
+﻿@model Direct_Barber.Models.Usuario
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/DeletePerfil.css" />
+    <title>Confirmar Eliminación de Perfil</title>
+    
+</head>
+<body>
+    <div class="form-container">
+        <h1>Confirmar Eliminación de Perfil</h1>
+        <p>¿Estás seguro que deseas eliminar tu perfil? Esta acción no se puede deshacer.</p>
+
+        <div class="user-info">
+            <h2>Información del Usuario</h2>
+            <dl>
+                <dt>@Html.DisplayNameFor(model => model.Nombre)</dt>
+                <dd>@Html.DisplayFor(model => model.Nombre)</dd>
+
+                <dt>@Html.DisplayNameFor(model => model.Apellido)</dt>
+                <dd>@Html.DisplayFor(model => model.Apellido)</dd>
+
+                <dt>@Html.DisplayNameFor(model => model.Correo)</dt>
+                <dd>@Html.DisplayFor(model => model.Correo)</dd>
+
+                <dt>@Html.DisplayNameFor(model => model.Direccion)</dt>
+                <dd>@Html.DisplayFor(model => model.Direccion)</dd>
+
+                <dt>@Html.DisplayNameFor(model => model.Telefono)</dt>
+                <dd>@Html.DisplayFor(model => model.Telefono)</dd>
+
+                <dt>@Html.DisplayNameFor(model => model.FecNacimiento)</dt>
+                <dd>@Html.DisplayFor(model => model.FecNacimiento)</dd>
+
+                <dt>@Html.DisplayNameFor(model => model.Documento)</dt>
+                <dd>@Html.DisplayFor(model => model.Documento)</dd>
+            </dl>
+        </div>
+
+        <form asp-action="Delete">
+            <input type="hidden" asp-for="Id" />
+            <button type="submit" class="btn btn-danger">Eliminar Perfil</button>
+            <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+</body>
+</html>

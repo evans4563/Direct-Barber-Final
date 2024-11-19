@@ -1,0 +1,174 @@
+﻿@model Direct_Barber.Models.Solicitud
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container p-4" style="border-radius: 5px;">
+    <a asp-controller="TipoSers" asp-action="Index" class="btn btn-primary" style="width: 100%; padding: 20px; font-size: 20px; font-weight: bold; border-radius: 8px; background-color: #28a745; border-color: #28a745;">Seleccionar Otro Servicio</a>
+</div>
+
+<div class="container p-4" style="border-radius: 10px; background-color: dimgray;">
+    <div class="row">
+        <!-- Columna izquierda para el mapa -->
+        <div class="col-md-6 d-flex flex-column">
+            <h4 class="text-center mb-4 text-white">Ubicación en el Mapa</h4>
+            <div id="map" style="flex-grow: 1; width: 100%; border-radius: 10px;"></div>
+        </div>
+        <!-- Columna derecha para el formulario -->
+        <div class="col-md-6 d-flex flex-column">
+            <h4 class="text-center mb-4 text-white">Datos de la Solicitud</h4>
+            <div style="background-color: white; padding: 20px; border-radius: 10px; flex-grow: 1;">
+                <form asp-action="Create" id="solicitud-form">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="form-group mb-3">
+                        <label asp-for="Dirección" class="control-label"></label>
+                        <input asp-for="Dirección" id="direccion-input" class="form-control" />
+                        <span asp-validation-for="Dirección" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Fecha" class="control-label"></label>
+                        <input asp-for="Fecha" class="form-control" />
+                        <span asp-validation-for="Fecha" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label asp-for="TipoServicio" class="control-label"></label>
+                        <select asp-for="TipoServicio" class="form-control">
+                            <option value="@ViewBag.TipoServicioId">@ViewBag.NombreServicio</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label asp-for="PrecioServicio" class="control-label"></label>
+                        <input asp-for="PrecioServicio" class="form-control" value="@ViewBag.PrecioServicio" readonly />
+                    </div>
+
+
+
+                    <div class="text-center">
+                        <input type="submit" id="submit-btn" value="Crear Solicitud" class="btn btn-prima" style="background-color: black; color: white;" />
+                    </div>
+                </form>
+                <div id="alert" style="display: none;"></div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    #alert {
+        border-radius: 5px;
+        padding: 10px;
+        margin-top: 10px;
+        text-align: center;
+    }
+
+        #alert.success {
+            background-color: #d4edda; /* Verde claro */
+            color: #155724; /* Verde oscuro */
+            border: 1px solid #c3e6cb; /* Verde claro */
+        }
+
+        #alert.error {
+            background-color: #f8d7da; /* Rojo claro */
+            color: #721c24; /* Rojo oscuro */
+            border: 1px solid #f5c6cb; /* Rojo claro */
+        }
+</style>
+
+@section Scripts {
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDk_6YpNpeASBHg_kW6F92G_6YoMacuMH8&libraries=places&callback=initMap"></script>
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+
+    <script type="text/javascript">
+        let map;
+        let geocoder;
+        let autocomplete;
+        let marker;
+
+        function initMap() {
+            const medellin = { lat: 6.2442, lng: -75.5812 };
+
+            // Inicializa el mapa centrado en Medellín
+            map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 12,
+                center: medellin,
+            });
+
+            geocoder = new google.maps.Geocoder();
+
+            const direccionInput = document.getElementById("direccion-input");
+            autocomplete = new google.maps.places.Autocomplete(direccionInput);
+
+            // Manejo del autocompletado en el campo de dirección
+            autocomplete.addListener('place_changed', function () {
+                let place = autocomplete.getPlace();
+                if (place.geometry) {
+                    setMapMarker(place.geometry.location);
+                    map.setCenter(place.geometry.location);
+                }
+            });
+
+            // Evento de clic en el mapa para obtener la dirección
+            map.addListener('click', function (event) {
+                const latLng = event.latLng;
+                geocodeLatLng(latLng);
+            });
+        }
+
+        // Coloca un marcador en el mapa
+        function setMapMarker(location) {
+            if (marker) {
+                marker.setPosition(location);
+            } else {
+                marker = new google.maps.Marker({
+                    position: location,
+                    map: map
+                });
+            }
+        }
+
+        // Realiza la geocodificación inversa al hacer clic en el mapa
+        function geocodeLatLng(latLng) {
+            geocoder.geocode({ location: latLng }, function (results, status) {
+                if (status === "OK") {
+                    if (results[0]) {
+                        // Coloca la dirección en el input
+                        document.getElementById('direccion-input').value = results[0].formatted_address;
+                        // Coloca un marcador en el mapa
+                        setMapMarker(latLng);
+                        map.setCenter(latLng);
+                    } else {
+                        alert("No se encontraron resultados.");
+                    }
+                } else {
+                    alert("Geocoder falló debido a: " + status);
+                }
+            });
+        }
+
+        // Manejo del envío del formulario
+                document.getElementById('solicitud-form').addEventListener('submit', function (event) {
+                    event.preventDefault(); // Previene el envío del formulario para demostración
+
+                    // Obtiene los valores de los campos
+                    const direccion = document.getElementById('direccion-input').value;
+                    const fecha = document.querySelector('input[name="Fecha"]').value;
+                    const tipoServicio = document.querySelector('select[name="TipoServicio"]').value;
+
+                    // Verifica si algún campo está vacío
+                    if (!direccion || !fecha || !tipoServicio) {
+                        document.getElementById('alert').innerHTML = "Por favor, completa todos los campos.";
+                        document.getElementById('alert').className = 'error';
+                        document.getElementById('alert').style.display = 'block';
+                        return;
+                    }
+
+                    // Si todo está correcto, envía el formulario
+                    this.submit(); // Envia el formulario real
+                });
+    </script>
+}

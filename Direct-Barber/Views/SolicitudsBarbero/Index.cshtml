@@ -1,0 +1,95 @@
+﻿@model Direct_Barber.Models.SolicitudIndexViewModel
+
+@{
+    ViewData["Title"] = "Solicitudes de Servicio";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5">
+    <div class="text-center mb-4">
+        <h1 class="display-4">@ViewData["Title"]</h1>
+        <p class="lead">Aquí puedes ver y aceptar una solicitud Hecha por un cliente</p>
+    </div>
+
+    <!-- Tabla: Solicitudes donde IdBarbero está vacío -->
+    <div class="card shadow-sm mb-5">
+        <div class="card-header bg-warning text-white">
+            <h2 class="h4 mb-0">Solicitudes De Servicio</h2>
+        </div>
+        <div class="card-body p-4">
+            <div class="table-responsive">
+                <table class="table table-hover table-striped">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Dirección</th>
+                            <th>Fecha</th>
+                            <th>Tipo de Servicio</th>
+                            <th>Precio</th>
+                            <th>Cliente</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.SolicitudesSinBarbero != null && Model.SolicitudesSinBarbero.Any())
+                        {
+                            @foreach (var solicitud in Model.SolicitudesSinBarbero)
+                            {
+                                <tr>
+                                    <td>@Html.DisplayFor(modelItem => solicitud.Dirección)</td>
+                                    <td>@Html.DisplayFor(modelItem => solicitud.Fecha)</td>
+                                    <td>@Html.DisplayFor(modelItem => solicitud.TipoServicioNavigation.Nombre)</td>
+                                    <td>@Html.DisplayFor(modelItem => solicitud.PrecioServicio)</td>
+                                    <td>@Html.DisplayFor(modelItem => solicitud.IdClienteNavigation.Nombre)</td>
+                                    <td>
+                                        <a class="btn btn-info btn-sm" asp-action="Details" asp-route-id="@solicitud.IdSolicitud">Detalles</a>
+
+                                        <!-- Formulario para aceptar la solicitud -->
+                                        <form asp-action="Aceptar" method="post" style="display:inline;">
+                                            <input type="hidden" name="id" value="@solicitud.IdSolicitud" />
+                                            <button type="submit" class="btn btn-warning btn-sm">Aceptar</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr>
+                                <td colspan="6" class="text-center">No hay solicitudes pendientes.</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .table thead th {
+        vertical-align: middle;
+        text-align: center;
+    }
+
+    .table tbody td {
+        vertical-align: middle;
+        text-align: center;
+    }
+
+    .btn {
+        min-width: 100px;
+    }
+
+    .table-responsive {
+        max-height: 400px;
+        overflow-y: auto;
+    }
+
+    .card {
+        border: none;
+    }
+
+    .card-header {
+        font-weight: 600;
+    }
+</style>

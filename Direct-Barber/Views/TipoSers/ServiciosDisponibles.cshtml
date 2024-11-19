@@ -1,0 +1,26 @@
+﻿@model IEnumerable<Direct_Barber.Models.TipoSer>
+
+@{
+    ViewData["Title"] = "ServiciosDisponibles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Servicios Disponibles</h1>
+<br />
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img src="~/images/@item.Foto" class="card-img-top" alt="@item.Nombre" style="object-fit: cover; height: 200px;">
+
+                <div class="card-body">
+                    <h5 class="card-title">@item.Nombre</h5>
+                    <p class="card-text">Precio: $@item.Precio</p>
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary">Ver detalles</a>
+                    <a href="#" class="btn btn-success">Seleccionar servicio</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>

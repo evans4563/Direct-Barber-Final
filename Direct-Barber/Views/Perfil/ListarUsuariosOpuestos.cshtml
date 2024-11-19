@@ -1,0 +1,21 @@
+﻿@model IEnumerable<Direct_Barber.Models.Usuario>
+<link rel="stylesheet" href="~/css/ListarBarberos.css" />
+
+
+<div class="wrapper">
+    <main>
+        <div class="usuarios-lista">
+            <h2>Lista de Barberos</h2>
+            @foreach (var usuario in Model)
+            {
+                <div class="usuario-item">
+                    <a href="@Url.Action("VerPerfil", "Perfil", new { id = usuario.Id })">
+                        <img src="/images/@(usuario.Foto ?? "usuario.png")" alt="Foto de @usuario.Nombre" class="usuario-foto" />
+                        <span class="usuario-nombre">@usuario.Nombre @usuario.Apellido</span>
+                    </a>
+                </div>
+            }
+        </div>
+    </main>
+</div>
+

@@ -1,0 +1,315 @@
+﻿/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #B4C4DB !important;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.perfil-barbero {
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+    .perfil-barbero h1 {
+        color: #2C3D5B !important;
+        font-weight: bold !important;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .perfil-barbero .foto {
+        float: left;
+        margin-right: 30px;
+    }
+
+.barbero-photo {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.perfil-info {
+    overflow: hidden;
+}
+
+.info-text {
+    line-height: 1.6;
+    text-align:left;
+    margin:20px;
+}
+
+    .info-text p {
+        margin-bottom: 10px;
+    }
+
+    .info-text strong {
+        color: #2C3D5B !important;
+    }
+
+
+/* Clearfix para manejar el float */
+.perfil-barbero::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Nuevos estilos para reseñas y promedio */
+.resenas-promedio {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #f0f0f0;
+    border-radius: 8px;
+}
+
+.res-pro {
+    text-align: center;
+}
+
+    .res-pro span {
+        font-size: 24px;
+        font-weight: bold;
+        color: #2C3D5B;
+    }
+
+    .res-pro p {
+        margin-top: 5px;
+        color: #555;
+    }
+
+.agregar-resena button {
+    background-color: #212529;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+    .agregar-resena button:hover {
+        color: #f1c40f;
+    }
+
+/* Estilos para el formulario de agregar reseña */
+.form-agregar-resena {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+    .form-agregar-resena h3 {
+        color: #333;
+        margin-bottom: 15px;
+    }
+
+    .form-agregar-resena form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .form-agregar-resena label {
+        margin-top: 10px;
+        margin-bottom: 5px;
+        color: #555;
+    }
+
+    .form-agregar-resena textarea,
+    .form-agregar-resena input[type="number"] {
+        padding: 8px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        margin-bottom: 10px;
+    }
+
+    .form-agregar-resena textarea {
+        height: 100px;
+        resize: vertical;
+    }
+
+    .form-agregar-resena button[type="submit"] {
+        background-color: #212529;
+        color: white;
+        border: none;
+        padding: 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .form-agregar-resena button:hover {
+        color: #f1c40f;
+    }
+
+/* Nuevos estilos para la sección de reseñas */
+.resenas-container {
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+    .resenas-container h2 {
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+.resenas-item {
+    border-bottom: 1px solid #e0e0e0;
+}
+
+    .resenas-item:last-child {
+        border-bottom: none;
+    }
+
+.resena-foto {
+    float: left;
+    margin-right: 20px;
+}
+
+.cliente-photo {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.resena-info {
+    overflow: hidden;
+    text-align: left;
+    margin: 20px;
+}
+
+    .resena-info strong {
+        color: #2C3D5B;
+        font-size: 18px;
+    }
+
+    .resena-info p {
+        margin: 10px 0;
+    }
+
+    .resena-info small {
+        color: #777;
+        font-style: italic;
+        text-align:end !important;
+    }
+
+/* Clearfix para manejar el float en las reseñas */
+.resenas-item::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.resena-personal {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e0e0e0;
+    display: flex;
+    align-items: center;
+}
+
+    .resena-personal:hover {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+.resena-foto {
+    margin-right: 20px;
+}
+
+.resena-info {
+    flex-grow: 1;
+}
+
+.rese-acciones {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-left: auto;
+}
+
+    .rese-acciones a,
+    .rese-acciones button {
+        margin-left: 10px;
+        padding: 8px 12px;
+        border-radius: 4px;
+        text-decoration: none;
+        font-weight: bold;
+        color: white;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+.btn-edit {
+    background-color: #193131;
+    color: white;
+    border: none;
+}
+
+    .btn-edit:hover {
+        background-color: #173454;
+    }
+
+.btn-delete {
+    background-color: #6b0101;
+    color: white;
+    border: none;
+}
+
+    .btn-delete:hover {
+        background-color: #900500;
+    }
+
+@media (max-width: 576px) {
+    .resena-personal {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .resena-foto {
+        margin-right: 0;
+        margin-bottom: 15px;
+    }
+
+    .resena-info {
+        width: 100%;
+        text-align: center;
+    }
+
+    .rese-acciones {
+        width: 100%;
+        justify-content: center;
+        margin-top: 15px;
+    }
+
+        .rese-acciones a,
+        .rese-acciones button {
+            margin: 0 5px;
+        }
+}

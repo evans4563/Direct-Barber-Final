@@ -1,0 +1,17 @@
+﻿<h2>Resumen de Servicios Seleccionados</h2>
+
+@if (ViewBag.ServiciosSeleccionados != null && ViewBag.ServiciosSeleccionados.Count > 0)
+{
+    <ul>
+        @foreach (var servicio in ViewBag.ServiciosSeleccionados)
+        {
+            <li>@servicio</li>
+        }
+    </ul>
+}
+else
+{
+    <p>No seleccionaste ningún servicio.</p>
+}
+
+<a class="btn btn-primary" href="/Pago">Proceder al Pago</a>
